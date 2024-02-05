@@ -7,9 +7,9 @@ const BreadCrumb = (props) => {
         <Helmet>
           <title>{props.title} | Fashion Club BD</title>
         </Helmet>
-        <ol class="breadcrumb my-4">
-            <li class="breadcrumb-item text-dark">Dashboard</li>
-            <li class="breadcrumb-item active">{props.title}</li>
+        <ol className="breadcrumb my-4">
+            <li className="breadcrumb-item text-dark">Dashboard</li>
+            <li className="breadcrumb-item active">{props.title}</li>
         </ol>
     </div>
   )

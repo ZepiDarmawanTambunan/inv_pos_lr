@@ -1,10 +1,36 @@
 import React from 'react'
 import $ from 'jquery';
+import Swal from 'sweetalert2';
+import Constants from '../../Constants';
+import axios from 'axios';
+import GlobalFunction from '../../GlobalFunction';
 
 const Nav = () => {
 
   const handleSidebar = () => {
-    $("body").toggleClass('sb-sidenav-toggled');
+    document.querySelector('body').classList.toggle('sb-sidenav-toggled');
+    // $("body").toggleClass('sb-sidenav-toggled');
+  }
+
+  const handleLogout = async () => {
+    const confirmed = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You will be logout",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, logout!'
+    });
+    if (confirmed.isConfirmed) {
+      try {
+        await axios.post(`${Constants.BASE_URL}/logout`);
+        GlobalFunction.logOut();
+        window.location.reload();
+      } catch (error) {
+        GlobalFunction.logOut();
+      }
+    }
   }
 
   return (
@@ -19,14 +45,15 @@ const Nav = () => {
               <button className="btn btn-primary" id="btnNavbarSearch" type="button"><i className="fas fa-search"></i></button>
           </div>
       </form>
-      <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+      <ul className="navbar-nav d-flex align-items-end me-3 me-lg-4">
+          <p className='text-white'>{localStorage.name != undefined ? localStorage.name : null}</p>
           <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="fas fa-user fa-fw"></i></a>
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <li><a className="dropdown-item" href="#!">Settings</a></li>
                   <li><a className="dropdown-item" href="#!">Activity Log</a></li>
                   <li><hr className="dropdown-divider" /></li>
-                  <li><a className="dropdown-item" href="#!">Logout</a></li>
+                  <li><button onClick={handleLogout} className="dropdown-item">Logout</button></li>
               </ul>
           </li>
       </ul>

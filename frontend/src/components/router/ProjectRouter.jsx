@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router-dom'
 import Master from '../layout/Master'
 import Dashboard from '../modules/Dashboard'
 import Test from '../modules/Test'
+import Error500 from '../modules/Error500'
+import AddCategory from '../modules/category/AddCategory'
 
 const ProjectRouter = createBrowserRouter([
     {
@@ -13,8 +15,16 @@ const ProjectRouter = createBrowserRouter([
                 element: <Dashboard/>
             },
             {
+                path: '/category/create',
+                element: <AddCategory/>
+            },
+            {
                 path: '/test',
                 element: <Test/>
+            },
+            {
+                path: '/error-500',
+                element: <Error500/>
             }
         ]
     }

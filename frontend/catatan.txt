@@ -1,3 +1,4 @@
 npm i bootstrap@5.2.3
 npm i jquery
 npm i node-sass
+npm i axios

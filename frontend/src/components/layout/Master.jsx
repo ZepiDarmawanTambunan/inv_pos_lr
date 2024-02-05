@@ -12,7 +12,7 @@ const Master = () => {
         <Sidebar/>
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
+                <div className="container-fluid px-4">
                     <Outlet/>
                 </div>
             </main>
